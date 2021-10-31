@@ -48,3 +48,9 @@ class Business(models.Model):
     @classmethod
     def search_business(cls,name):
         return cls.objects.filter(name_icontains = name).all()             
+
+class Post(models.Model):
+    title = models.CharField(max_length=120,null=True)
+    post = models.TextField()
+    date = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='post_owner')
+    hood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE, related_name='hood_post')
