@@ -105,3 +105,14 @@ def leave_hood(request, id):
 
 def profile(request, username):
     return render(request, 'profile.html')
+
+def edit_profile(request, username):
+    user = User.objects.get(username=username)
+    if request.method == 'POST':
+        form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile', user.username)
+    else:
+        form = UpdateProfileForm(instance=request.user.profile)
+    return render(request, 'editprofile.html', {'form': form})
