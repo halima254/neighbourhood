@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="container">
+<div class="container" >
         <a href="{% url 'new-hood' %}" class="btn btn-sm btn-info mb-2"> New Hood</a>
-    <div class="row">
+    <div class="row" style="margin-left:20%">
         {% for hood in all_hoods %}
         <div class="col-md-4">
             <div class="card mb-4" style="min-height:300px">

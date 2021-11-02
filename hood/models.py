@@ -31,7 +31,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE, related_name ='profile')
     name = models.CharField(max_length=50, blank=True)
     bio = models.TextField(max_length=300, blank=True)
-    profile_picture = models.ImageField(upload_to='images/',default ='default.png')
+    profile_picture = models.ImageField(upload_to='images/')
     location = models.CharField(max_length=50,blank=True, null=True)
     neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.SET_NULL, null=True, related_name='members', blank=True)
     

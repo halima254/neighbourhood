@@ -1,13 +1,13 @@
-<nav id="sidebar" class="" style="background-color: cadetblue;">
+<nav id="sidebar" class="" style="background-color: #d1d8e0">
     <div class="sidebar-header ">
-        <h3><a href="{% url 'index' %}">Neighborhood.</a></h3>
+        <h3><a href="{% url 'index' %}">Neighbourhood.</a></h3>
         <strong><i class="fas fa-home"></i></strong>
     </div>
     {% if user.is_authenticated %}
     <ul class="list-unstyled components mr-2 ml-2">
         <li class="mb-4">
             <a href="{% url 'profile' user.username %}">
-                <img class="rounded-circle nav-img"src="{{ user.profile.profile_picture.url }}" alt="">
+                <img class="rounded-circle nav-img"src="{{ user.profile.profile_picture }}" alt="" height="100px": width="100px">
                 &nbsp; Profile
             </a>
 
@@ -50,7 +50,15 @@
 <style>
 nav{
     width: 200px;
+
 }
+
+
+#sidebar ul li a:hover {
+    color:#d1d8e0;
+    background:maroon;
+}
+
 
 
 </style>
