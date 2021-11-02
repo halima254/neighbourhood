@@ -12,7 +12,7 @@ class Neighbourhood(models.Model):
     hood_logo = models.ImageField(upload_to ='images/')
     description = models.TextField()
     health_contact = models.IntegerField(null=True, blank=True)
-    police_contact = models.GenericIPAddressField(null=True,blank=True)
+    police_contact = models.IntegerField(null=True,blank=True)
     
     
     def __str__(self):

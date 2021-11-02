@@ -4,7 +4,7 @@ from .forms import SignupForm,PostForm,UpdateProfileForm,NeighbourHoodForm,Busin
 from django.contrib.auth.decorators import login_required
 from .models import Neighbourhood,Post,Profile,Business
 from django.contrib.auth.models import User
-
+from django.contrib.auth import login,authenticate
 
 # Create your views here.
 @login_required(login_url='login')
@@ -27,12 +27,12 @@ def signup(request):
 
 
 def community(request):
-    all_hoods = NeighbourHood.objects.all()
+    all_hoods = Neighbourhood.objects.all()
     all_hoods = all_hoods[::-1]
     params = {
         'all_hoods': all_hoods,
     }
-    return render(request, 'comm.html', params)
+    return render(request, 'all_hoods.html', params)
 
 def create_hood(request):
     if request.method == 'POST':
@@ -49,7 +49,7 @@ def create_hood(request):
 
 
 def single_hood(request, hood_id):
-    hood = NeighbourHood.objects.get(id=hood_id)
+    hood = Neighbourhood.objects.get(id=hood_id)
     business = Business.objects.filter(neighbourhood=hood)
     posts = Post.objects.filter(hood=hood)
     posts = posts[::-1]
@@ -72,13 +72,13 @@ def single_hood(request, hood_id):
     return render(request, 'single_hood.html', params)
 
 def hood_members(request, hood_id):
-    hood = NeighbourHood.objects.get(id=hood_id)
+    hood = Neighbourhood.objects.get(id=hood_id)
     members = Profile.objects.filter(neighbourhood=hood)
     return render(request, 'members.html', {'members': members})
 
 
 def create_post(request, hood_id):
-    hood = NeighbourHood.objects.get(id=hood_id)
+    hood = Neighbourhood.objects.get(id=hood_id)
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
@@ -92,13 +92,13 @@ def create_post(request, hood_id):
     return render(request, 'post.html', {'form': form})
 
 def join_hood(request, id):
-    neighbourhood = get_object_or_404(NeighbourHood, id=id)
+    neighbourhood = get_object_or_404(Neighbourhood, id=id)
     request.user.profile.neighbourhood = neighbourhood
     request.user.profile.save()
     return redirect('hood')
 
 def leave_hood(request, id):
-    hood = get_object_or_404(NeighbourHood, id=id)
+    hood = get_object_or_404(Neighbourhood, id=id)
     request.user.profile.neighbourhood = None
     request.user.profile.save()
     return redirect('hood')

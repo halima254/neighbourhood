@@ -48,6 +48,20 @@ a:focus {
     transition: all 0.3s;
 }
 
+.navbar {
+    padding: 20px 10px;
+    background-color: #35495e;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
 
 i,
 span {
@@ -71,21 +85,6 @@ span {
 .poster {
     padding: 20px;
     border-radius: 6px;
-}
-
-.navbar {
-    padding: 20px 10px;
-    background-color: #35495e;
-    border: none;
-    border-radius: 0;
-    margin-bottom: 40px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-btn {
-    box-shadow: none;
-    outline: none !important;
-    border: none;
 }
 
 #sidebar {
